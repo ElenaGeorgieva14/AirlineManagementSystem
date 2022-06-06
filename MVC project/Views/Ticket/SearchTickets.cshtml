@@ -1,0 +1,81 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MVC_project.ViewModels.TicketVM>
+
+@{
+    ViewBag.Title = "SearchTickets";
+}
+
+<h2>SearchTickets</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Flight.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DocumentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Nationality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SeatNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Luggage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nationality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Luggage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+new PagedListRenderOptions()
+{
+    Display = PagedListDisplayMode.IfNeeded,
+DisplayPageCountAndCurrentLocation = true
+})

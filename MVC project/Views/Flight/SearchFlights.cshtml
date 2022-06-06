@@ -1,0 +1,87 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MVC_project.ViewModels.FlightVM>
+
+@{
+    ViewBag.Title = "SearchFlights";
+}
+
+<h2>Search Flights</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().FlightNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().BoardingTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NumberOfSeats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().From)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().To)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Gate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TicketPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().PilotId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FlightNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BoardingTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumberOfSeats)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.From)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.To)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Gate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TicketPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PilotId)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("SearchFlights", new { page }),
+new PagedListRenderOptions()
+{
+    Display = PagedListDisplayMode.IfNeeded,
+DisplayPageCountAndCurrentLocation = true
+})
