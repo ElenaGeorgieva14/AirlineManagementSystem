@@ -23,6 +23,7 @@ namespace WcfServiceLibrary1
             else
             {
                 Console.Writeline("Ticket is deleted");
+                Console.Writeline("Ticket is deleted");
                 return "Ticket is deleted";
             }
         }
