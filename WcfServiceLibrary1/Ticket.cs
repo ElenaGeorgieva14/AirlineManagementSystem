@@ -17,6 +17,7 @@ namespace WcfServiceLibrary1
         {
             if (!ticketsService.Delete(id))
             {
+                Console.Writeline("Ticket is not deleted");
                 return "Ticket is not deleted!";
             }
             else
